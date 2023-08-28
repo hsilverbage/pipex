@@ -6,7 +6,7 @@
 /*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 15:44:35 by henrik            #+#    #+#             */
-/*   Updated: 2023/08/28 16:37:15 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/08/28 18:39:12 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,19 @@ void	ft_close_pipes(t_bonus *pipex)
 	}
 }
 
-void	ft_dup2(int stdin, int stdout)
+void	ft_dup2(int stdin, int stdout, t_bonus *pipex)
 {
-	dup2(stdin, STDIN_FILENO);
-	dup2(stdout, STDOUT_FILENO);
+	pipex->dup_close_1 = dup2(stdin, STDIN_FILENO);
+	pipex->dup_close_2 = dup2(stdout, STDOUT_FILENO);
+}
+
+void	ft_close_dup(t_bonus *pipex)
+{
+	close(pipex->dup_close_1);
+	close(pipex->dup_close_2);
+	ft_close_pipes(pipex);
+	ft_free_all(pipex);
+	ft_free_cmd(pipex);
 }
 
 void	ft_process_cmd(t_bonus *pipex, char **argv, int i)
@@ -58,23 +67,23 @@ void	ft_process_cmd(t_bonus *pipex, char **argv, int i)
 	if (pipex->pid == 0)
 	{
 		if (i == 0)
-			ft_dup2(pipex->infile, pipex->fd[1]);
+			ft_dup2(pipex->infile, pipex->fd[1], pipex);
 		else if (i == pipex->nb_cmd - 1)
-			ft_dup2(pipex->fd[2 * i - 2], pipex->outfile);
+			ft_dup2(pipex->fd[2 * i - 2], pipex->outfile, pipex);
 		else
-			ft_dup2(pipex->fd[2 * i - 2], pipex->fd[2 * i + 1]);
+			ft_dup2(pipex->fd[2 * i - 2], pipex->fd[2 * i + 1], pipex);
 		ft_close_pipes(pipex);
 		pipex->cmd = ft_split(argv[i + 2 + pipex->heredoc], ' ');
 		pipex->cmd_path = ft_init_cmd_path(pipex, pipex->cmd[0]);
 		if (!pipex->cmd_path)
 		{
 			ft_putstr_fd("Error : command not found\n", STDERR_FILENO);
-			ft_free_cmd(pipex);
+			ft_close_dup(pipex);
 		}
 		if (execve(pipex->cmd_path, pipex->cmd, NULL) == -1)
 		{
 			perror("Error : command not found\n");
-			ft_free_cmd(pipex);
+			ft_close_dup(pipex);
 		}
 	}
 }

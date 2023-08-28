@@ -6,7 +6,7 @@
 /*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 15:44:24 by henrik            #+#    #+#             */
-/*   Updated: 2023/08/28 16:40:03 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/08/28 18:25:46 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,9 @@ int	main(int argc, char **argv, char **envp)
 		ft_process_cmd(&pipex, argv, i);
 		i++;
 	}
-	ft_close_pipes(&pipex);
 	waitpid(-1, NULL, 0);
+	ft_close_pipes(&pipex);
+	free(pipex.fd);
 	ft_free_all(&pipex);
 	return (0);
 }

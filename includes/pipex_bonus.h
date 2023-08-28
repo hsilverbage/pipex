@@ -6,7 +6,7 @@
 /*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 12:22:34 by hsilverb          #+#    #+#             */
-/*   Updated: 2023/08/28 16:40:45 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/08/28 18:29:50 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct s_bonus
 	int			nb_pipes;
 	int			heredoc;
 	pid_t		pid;
+	int			dup_close_1;
+	int			dup_close_2;
 }				t_bonus;
 
 void	ft_process_cmd(t_bonus *pipex, char **argv, int i);

@@ -6,7 +6,7 @@
 /*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 15:43:45 by henrik            #+#    #+#             */
-/*   Updated: 2023/08/28 16:40:09 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/08/28 17:47:22 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	ft_free_cmd(t_bonus *pipex)
 		free(pipex->cmd[i++]);
 	free(pipex->cmd);
 	free(pipex->cmd_path);
+	if (pipex->fd)
+		free(pipex->fd);
 	exit (EXIT_FAILURE);
 }
 
