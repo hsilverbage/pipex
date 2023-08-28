@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: henrik <henrik@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:17:03 by henrik            #+#    #+#             */
-/*   Updated: 2023/08/08 11:49:50 by henrik           ###   ########lyon.fr   */
+/*   Updated: 2023/08/28 16:39:36 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_open_heredoc(t_bonus *pipex, char **argv, int argc)
 		ft_free_path(pipex);
 		exit (EXIT_FAILURE);
 	}
-	pipex->outfile = open(argv[argc -1], O_WRONLY | O_CREAT | O_APPEND, 0000644);
+	pipex->outfile = open(argv[argc -1], O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (pipex->outfile < 0)
 	{
 		perror("Error");
@@ -37,7 +37,7 @@ void	ft_here_doc(t_bonus *pipex, char **argv, int argc)
 	char	*buf;
 
 	pipex->limiter = argv[2];
-	pipex->file = open(".heredoc_tmp", O_CREAT | O_WRONLY | O_TRUNC, 0000644);
+	pipex->file = open(".heredoc_tmp", O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (pipex->file < 0)
 	{
 		perror("Error :");
@@ -58,4 +58,3 @@ void	ft_here_doc(t_bonus *pipex, char **argv, int argc)
 	close(pipex->file);
 	ft_open_heredoc(pipex, argv, argc);
 }
-

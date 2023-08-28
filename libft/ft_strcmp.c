@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: henrik <henrik@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 18:15:26 by henrik            #+#    #+#             */
-/*   Updated: 2023/08/06 18:18:00 by henrik           ###   ########lyon.fr   */
+/*   Updated: 2023/08/28 16:33:35 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_strcmp(char *s1, char *s2)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')

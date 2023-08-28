@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: henrik <henrik@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 15:44:24 by henrik            #+#    #+#             */
-/*   Updated: 2023/08/08 11:55:13 by henrik           ###   ########lyon.fr   */
+/*   Updated: 2023/08/28 16:40:03 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,6 @@ void	ft_init_path(char **envp, t_bonus *pipex)
 	exit (EXIT_FAILURE);
 }
 
-void	ft_error(t_bonus *pipex)
-{
-	perror("Error :");
-	ft_free_path(pipex);
-	exit (EXIT_FAILURE);
-}
 void	ft_init_pipe(t_bonus *pipex)
 {
 	int	i;

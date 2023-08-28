@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: henrik <henrik@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 12:22:34 by hsilverb          #+#    #+#             */
-/*   Updated: 2023/08/07 20:21:29 by henrik           ###   ########lyon.fr   */
+/*   Updated: 2023/08/28 16:40:45 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <sys/wait.h>
-
 
 typedef struct s_bonus
 {
@@ -46,5 +45,6 @@ void	ft_close_fd(t_bonus *pipex);
 void	ft_close_pipes(t_bonus *pipex);
 void	ft_here_doc(t_bonus *pipex, char **argv, int argc);
 void	ft_free_path(t_bonus *pipex);
+void	ft_error(t_bonus *pipex);
 
 #endif

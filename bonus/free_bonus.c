@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: henrik <henrik@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 15:43:45 by henrik            #+#    #+#             */
-/*   Updated: 2023/08/08 15:07:03 by henrik           ###   ########lyon.fr   */
+/*   Updated: 2023/08/28 16:40:09 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_free_cmd(t_bonus *pipex)
 	free(pipex->cmd_path);
 	exit (EXIT_FAILURE);
 }
+
 void	ft_free_path(t_bonus *pipex)
 {
 	int	i;
@@ -38,10 +39,18 @@ void	ft_free_path(t_bonus *pipex)
 		free(pipex->path[i++]);
 	free(pipex->path);
 }
+
 void	ft_free_all(t_bonus *pipex)
 {
 	ft_free_path(pipex);
 	ft_close_fd(pipex);
 	if (pipex->heredoc == 1)
 		unlink(".heredoc_tmp");
+}
+
+void	ft_error(t_bonus *pipex)
+{
+	perror("Error :");
+	ft_free_path(pipex);
+	exit (EXIT_FAILURE);
 }

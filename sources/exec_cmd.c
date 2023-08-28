@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: henrik <henrik@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 20:55:13 by henrik            #+#    #+#             */
-/*   Updated: 2023/08/05 00:50:36 by henrik           ###   ########lyon.fr   */
+/*   Updated: 2023/08/28 16:35:48 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	*ft_init_cmd_path(t_struct *pipex, char *cmd)
 	}
 	return (NULL);
 }
+
 void	ft_process_cmd1(t_struct *pipex, char **argv)
 {
 	dup2(pipex->fd[1], STDOUT_FILENO);
@@ -45,7 +46,7 @@ void	ft_process_cmd1(t_struct *pipex, char **argv)
 		ft_putstr_fd("Error : command not found\n", STDERR_FILENO);
 		ft_free_cmd(pipex);
 	}
-	if (execve(pipex->cmd_path, pipex->cmd, NULL) == -1) // CHECK IF DOUBLE FREE
+	if (execve(pipex->cmd_path, pipex->cmd, NULL) == -1)
 	{
 		perror("Error : command not found\n");
 		ft_free_cmd(pipex);

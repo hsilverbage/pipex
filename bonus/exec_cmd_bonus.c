@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: henrik <henrik@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 15:44:35 by henrik            #+#    #+#             */
-/*   Updated: 2023/08/07 16:32:36 by henrik           ###   ########lyon.fr   */
+/*   Updated: 2023/08/28 16:37:15 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	*ft_init_cmd_path(t_bonus *pipex, char *cmd)
 	}
 	return (NULL);
 }
+
 void	ft_close_pipes(t_bonus *pipex)
 {
 	int	i;
@@ -50,16 +51,17 @@ void	ft_dup2(int stdin, int stdout)
 	dup2(stdin, STDIN_FILENO);
 	dup2(stdout, STDOUT_FILENO);
 }
+
 void	ft_process_cmd(t_bonus *pipex, char **argv, int i)
 {
 	pipex->pid = fork();
 	if (pipex->pid == 0)
 	{
-		if (i == 0) // FIRST CHILD
+		if (i == 0)
 			ft_dup2(pipex->infile, pipex->fd[1]);
-		else if (i == pipex->nb_cmd - 1) // LAST CHILD
+		else if (i == pipex->nb_cmd - 1)
 			ft_dup2(pipex->fd[2 * i - 2], pipex->outfile);
-		else			// MIDDLE CHILDS I BELIEVE
+		else
 			ft_dup2(pipex->fd[2 * i - 2], pipex->fd[2 * i + 1]);
 		ft_close_pipes(pipex);
 		pipex->cmd = ft_split(argv[i + 2 + pipex->heredoc], ' ');
@@ -69,7 +71,7 @@ void	ft_process_cmd(t_bonus *pipex, char **argv, int i)
 			ft_putstr_fd("Error : command not found\n", STDERR_FILENO);
 			ft_free_cmd(pipex);
 		}
-		if (execve(pipex->cmd_path, pipex->cmd, NULL) == -1) // CHECK IF DOUBLE FREE
+		if (execve(pipex->cmd_path, pipex->cmd, NULL) == -1)
 		{
 			perror("Error : command not found\n");
 			ft_free_cmd(pipex);

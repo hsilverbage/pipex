@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: henrik <henrik@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 12:22:34 by hsilverb          #+#    #+#             */
-/*   Updated: 2023/08/06 21:29:45 by henrik           ###   ########lyon.fr   */
+/*   Updated: 2023/08/28 16:36:40 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,15 @@
 # include <sys/stat.h>
 # include <sys/wait.h>
 
-
 typedef struct s_struct
 {
-	char		**path; //OK
+	char		**path;
 	char		**cmd;
 	char		*cmd_path;
-	int			infile;//OK
-	int			outfile;//OK
-	int			fd[2]; // OK
-	pid_t		pid; // first OK
+	int			infile;
+	int			outfile;
+	int			fd[2];
+	pid_t		pid;
 }				t_struct;
 
 void	ft_process_cmd2(t_struct *pipex, char **argv);
