@@ -6,7 +6,7 @@
 /*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 12:22:34 by hsilverb          #+#    #+#             */
-/*   Updated: 2023/08/28 16:36:40 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/08/28 18:53:48 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,15 @@
 
 typedef struct s_struct
 {
-	char		**path;
-	char		**cmd;
-	char		*cmd_path;
-	int			infile;
-	int			outfile;
-	int			fd[2];
-	pid_t		pid;
+	char	**path;
+	char	**cmd;
+	char	*cmd_path;
+	int		infile;
+	int		outfile;
+	int		fd[2];
+	pid_t	pid;
+	int		dup_close_1;
+	int		dup_close_2;
 }				t_struct;
 
 void	ft_process_cmd2(t_struct *pipex, char **argv);
@@ -39,5 +41,6 @@ void	ft_process_cmd1(t_struct *pipex, char **argv);
 void	ft_free_all(t_struct *pipex);
 void	ft_free_cmd(t_struct *pipex);
 void	ft_close_fd(t_struct *pipex);
+void	ft_close_dup(t_struct *pipex);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 15:43:45 by henrik            #+#    #+#             */
-/*   Updated: 2023/08/28 17:47:22 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/08/28 18:47:28 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	ft_free_cmd(t_bonus *pipex)
 	i = 0;
 	while (pipex->cmd[i])
 		free(pipex->cmd[i++]);
-	free(pipex->cmd);
-	free(pipex->cmd_path);
+	if ((pipex->cmd))
+		free(pipex->cmd);
 	if (pipex->fd)
 		free(pipex->fd);
 	exit (EXIT_FAILURE);
@@ -40,6 +40,7 @@ void	ft_free_path(t_bonus *pipex)
 	while (pipex->path[i])
 		free(pipex->path[i++]);
 	free(pipex->path);
+	pipex->path = NULL;
 }
 
 void	ft_free_all(t_bonus *pipex)
